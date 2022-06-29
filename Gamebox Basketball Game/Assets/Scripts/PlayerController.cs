@@ -5,15 +5,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private AudioSource source;
+
     [SerializeField] private AudioClip catchSound;
     [SerializeField] private AudioClip chargeSound;
     [SerializeField] private AudioClip gruntSound;
+    [SerializeField] private AudioClip scoreSound;
+
     [SerializeField] private float chargeSoundVolume;
     [SerializeField] private float catchSoundVolume;
     [SerializeField] private float gruntSoundVolume;
+    [SerializeField] private float scoreSoundVolume;
+
     [SerializeField] private float catchSoundPitch = 1f;
     [SerializeField] private float chargeSoundPitch = 3f;
     [SerializeField] private float gruntSoundPitch = 3f;
+    [SerializeField] private float scoreSoundPitch = 3f;
+
     [SerializeField] LayerMask groundCheckMask;
     [SerializeField] LayerMask springCheckMask;
 
@@ -141,6 +148,13 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void PlayScoreSound()
+    {
+        source.clip = scoreSound;
+        source.volume = scoreSoundVolume;
+        source.pitch = scoreSoundPitch;
+        source.Play();
+    }
     public void Grunt()
     {
         source.clip = gruntSound;

@@ -10,13 +10,17 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private float velocityCheckValue = 0.5f;
 
     [SerializeField] private bool canScore;
-    //исключаем ситуацию, когда можно забить путем броска в кольцо снизу вверх и последующего падения мяча в кольцо
-    //после броска снизу вверх в кольца для возвращения возможности получать очки игроку необходимо взять мяч в руки
 
+    [SerializeField] private PlayerController controller;
+
+    [SerializeField] private float scoreCoolDownTotal = 0f;
+
+    private float scoreCoolDownStart;
     private Rigidbody rb;
 
     void Start()
     {
+        scoreCoolDownStart = scoreCoolDownTotal;
         canScore = true;
         rb = GetComponent<Rigidbody>();
         score = 0;
@@ -29,8 +33,9 @@ public class ScoreManager : MonoBehaviour
         {
             if (rb.velocity.y < velocityCheckValue)
             {
-                if (canScore)
+                if (canScore && ((Time.time - scoreCoolDownStart) > scoreCoolDownTotal))
                 {
+                    Debug.Log($"Can Score: {canScore}");
                     AddPoint();
                 }
             } else
@@ -43,7 +48,9 @@ public class ScoreManager : MonoBehaviour
     void AddPoint()
     {
         score++;
+        controller.PlayScoreSound();
         Debug.Log($"score: {score}");
+        scoreCoolDownStart = Time.time;
     }
 
      public int GetScore()

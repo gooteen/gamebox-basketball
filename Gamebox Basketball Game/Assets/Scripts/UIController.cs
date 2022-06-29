@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+
+    [SerializeField] GameObject[] bulbs;
     [SerializeField] private Text pickupTip;
     [SerializeField] private Image scale;
 
@@ -28,16 +30,6 @@ public class UIController : MonoBehaviour
         levelUI.text = levelUIText + levelController.GetLevel();
     }
 
-    private void ManageThePickupTip()
-    {
-        if (playerView.CheckIfPickable()) {
-            pickupTip.enabled = true;
-        } else
-        {
-            pickupTip.enabled = false;
-        }
-    }
-
     public void FillScale(float dividend, float divider)
     {
         scale.fillAmount = dividend / divider;
@@ -46,5 +38,32 @@ public class UIController : MonoBehaviour
     public void PlayAnimation()
     {
         anim.SetTrigger(triggerName);
+    }
+
+    public void ManageLevelIndicator(int level)
+    {
+        for (int i = 0; i < bulbs.Length; i++)
+        {
+            Debug.Log(i);
+            if (i < level - 1)
+            {
+                bulbs[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+            } else 
+            {
+                bulbs[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.grey);
+            }
+        }
+    }
+
+    private void ManageThePickupTip()
+    {
+        if (playerView.CheckIfPickable())
+        {
+            pickupTip.enabled = true;
+        }
+        else
+        {
+            pickupTip.enabled = false;
+        }
     }
 }

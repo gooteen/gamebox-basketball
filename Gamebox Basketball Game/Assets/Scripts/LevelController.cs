@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    [SerializeField] ScoreManager scoreManager;
-    [SerializeField] RingBehaviour ringBehaviour;
-    [SerializeField] GuardBehaviour guardBehaviour;
-    [SerializeField] private float guardSpeedBoost;
+    [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private RingBehaviour ringBehaviour;
+    [SerializeField] private UIController ui;
 
     [SerializeField] PlayerController playerController;
 
     [SerializeField] private GameObject ringGuard;
-    [SerializeField] private GameObject springPlatform;
+    [SerializeField] private GameObject Video;
+    [SerializeField] private GameObject opponent;
+    [SerializeField] private GameObject spawnPoint;
+
+    [SerializeField] private float newOpponentSpeed;
 
     [SerializeField] private Transform ground;
     [SerializeField] private float groundShiftPosition = -0.45f;
@@ -30,11 +33,18 @@ public class LevelController : MonoBehaviour
     private int score;
 
     private bool groundMoved;
+
+    private AudioSource audio;
+
+    private OpponentController opController;
     
     void Start()
     {
+        opController = opponent.GetComponent<OpponentController>();
+        audio = GetComponent<AudioSource>();
         groundMoved = false;
         level = 1;
+        ui.ManageLevelIndicator(level);
     }
 
     void Update()
@@ -45,18 +55,21 @@ public class LevelController : MonoBehaviour
         {
             ToLevel2();
             level++;
+            ui.ManageLevelIndicator(level);
         }
 
         if (score == levelThreshold[1] && level == 2)
         {
             ToLevel3();
             level++;
+            ui.ManageLevelIndicator(level);
         }
 
         if (score == levelThreshold[2] && level == 3)
         {
             ToLevel4();
             level++;
+            ui.ManageLevelIndicator(level);
         }
 
     }
@@ -91,13 +104,14 @@ public class LevelController : MonoBehaviour
     {
         RespawnPlayer();
         RespawnBall();
-        //RespawnRing();
+        opController.SetSpeed(newOpponentSpeed);
         ringBehaviour.SetMove();
     }
 
     void ToLevel3()
     {
         ringGuard.SetActive(true);
+        spawnPoint.SetActive(true);
         RespawnPlayer();
         RespawnBall();
         RespawnRing();
@@ -107,7 +121,13 @@ public class LevelController : MonoBehaviour
 
     void ToLevel4()
     {
+        spawnPoint.SetActive(false);
+        ringGuard.SetActive(false);
+        opponent.SetActive(false);
+        audio.Stop();
+        Video.SetActive(true);
         Debug.Log("Game beaten!");
+        MoveGround();
     }
 
     void MoveGround()
