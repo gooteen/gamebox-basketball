@@ -17,8 +17,9 @@ public class LevelController : MonoBehaviour
     [SerializeField] private Transform ground;
     [SerializeField] private float groundShiftPosition = -0.45f;
 
-    [SerializeField] Transform ballSpawnPoint;
-    [SerializeField] Transform ringSpawnPoint;
+    [SerializeField] private Transform ballSpawnPoint;
+    [SerializeField] private float ballSpawnOffset;
+    [SerializeField] private Transform ringSpawnPoint;
 
     [SerializeField] Transform ball;
     [SerializeField] Transform ring;
@@ -76,7 +77,7 @@ public class LevelController : MonoBehaviour
     {
         Rigidbody rb = ball.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0f, 0f, 0f);
-        ball.position = ballSpawnPoint.position;
+        ball.position = new Vector3(ballSpawnPoint.position.x, ballSpawnPoint.position.y + ballSpawnOffset, ballSpawnPoint.position.z);
         ball.rotation = ballSpawnPoint.rotation;
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class OpponentController : MonoBehaviour
 {
     [SerializeField] private Transform ball;
+    [SerializeField] private Transform dutyPoint;
     [SerializeField] private PlayerController controller;
 
     [SerializeField] private UIController ui;
@@ -21,14 +22,30 @@ public class OpponentController : MonoBehaviour
 
     private bool isBallNear;
 
-
+    void Start()
+    {
+        transform.position = dutyPoint.position;
+    }
     void Update()
     {
         isBallNear = Physics.CheckSphere(transform.position, followDistance, mask);
-        if (isBallNear)
+        if (isBallNear && controller.CheckBall())
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(ball.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(ball.position.x, transform.position.y, ball.position.z), speed * Time.deltaTime);
+        } else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(dutyPoint.position.x, transform.position.y, dutyPoint.position.z), speed * Time.deltaTime);
         }
+    }
+
+    public void SetSpeed(float newSpeed) 
+    {
+        speed = newSpeed;
+    }
+
+    public void SetRadius(float r)
+    {
+        followDistance = r;
     }
 
     void OnCollisionEnter(Collision col)
