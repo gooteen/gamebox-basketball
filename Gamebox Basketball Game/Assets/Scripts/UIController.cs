@@ -8,6 +8,9 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text pickupTip;
     [SerializeField] private Image scale;
 
+    [SerializeField] private Animator anim;
+    [SerializeField] private string triggerName = "BallLost";
+
     [SerializeField] private CameraController playerView;
     [SerializeField] private LevelController levelController;
     [SerializeField] private ScoreManager scoreManager;
@@ -38,5 +41,10 @@ public class UIController : MonoBehaviour
     public void FillScale(float dividend, float divider)
     {
         scale.fillAmount = dividend / divider;
+    }
+
+    public void PlayAnimation()
+    {
+        anim.SetTrigger(triggerName);
     }
 }

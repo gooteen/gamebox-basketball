@@ -144,6 +144,23 @@ public class PlayerController : MonoBehaviour
         spawnDelayStart = Time.time;
     }
 
+    public bool CheckBall()
+    {
+        return ballPicked;
+    }
+
+    public void Release()
+    {
+        ballRb.isKinematic = false;
+        ball.transform.SetParent(null);
+        startChargeTime = 0;
+        ballPicked = false;
+        isCharging = false;
+        Debug.Log("Supposed to be released");
+        source.Stop();
+        soundPlayed = false;
+    }
+
     void PickUp()
     {
         if (playerView.CheckIfPickable())
@@ -159,17 +176,6 @@ public class PlayerController : MonoBehaviour
             source.pitch = catchSoundPitch;
             source.Play();
         }
-    }
-
-    void Release()
-    {
-        ball.transform.SetParent(null);
-        ballRb.isKinematic = false;
-        ballPicked = false;
-        isCharging = false;
-        Debug.Log("Supposed to be released");
-        source.Stop();
-        soundPlayed = false;
     }
 
     void Sprint()
@@ -233,8 +239,8 @@ public class PlayerController : MonoBehaviour
             {
                 Release();
                 ballRb.AddForce(ball.transform.forward.normalized * impulseValue, ForceMode.Impulse);
-                startChargeTime = 0;
-                isCharging = false;
+                //startChargeTime = 0;
+                //isCharging = false;
             }
         }
     }
