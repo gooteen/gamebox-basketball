@@ -107,13 +107,7 @@ public class LevelController : MonoBehaviour
 
     void ToLevel4()
     {
-        RespawnRing();
-        springPlatform.SetActive(true);
-        ringBehaviour.SetDirection();
-        ringBehaviour.SetMove();
-        RespawnPlayer();
-        RespawnBall();
-        guardBehaviour.SetSpeed(guardSpeedBoost);
+        Debug.Log("Game beaten!");
     }
 
     void MoveGround()

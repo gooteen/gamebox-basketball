@@ -66,5 +66,6 @@ public class OpponentController : MonoBehaviour
         controller.Release();
         rb.AddForce(direction * throwForce, ForceMode.Impulse);
         ui.PlayAnimation();
+        controller.Grunt();
     }
 }

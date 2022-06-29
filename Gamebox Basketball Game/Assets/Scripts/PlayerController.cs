@@ -7,10 +7,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource source;
     [SerializeField] private AudioClip catchSound;
     [SerializeField] private AudioClip chargeSound;
+    [SerializeField] private AudioClip gruntSound;
     [SerializeField] private float chargeSoundVolume;
     [SerializeField] private float catchSoundVolume;
+    [SerializeField] private float gruntSoundVolume;
     [SerializeField] private float catchSoundPitch = 1f;
     [SerializeField] private float chargeSoundPitch = 3f;
+    [SerializeField] private float gruntSoundPitch = 3f;
     [SerializeField] LayerMask groundCheckMask;
     [SerializeField] LayerMask springCheckMask;
 
@@ -136,6 +139,14 @@ public class PlayerController : MonoBehaviour
             ui.FillScale(0, 1);
         }
         
+    }
+
+    public void Grunt()
+    {
+        source.clip = gruntSound;
+        source.volume = gruntSoundVolume;
+        source.pitch = gruntSoundPitch;
+        source.Play();
     }
 
     public void SetBeingSpawned()
