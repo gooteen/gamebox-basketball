@@ -27,7 +27,7 @@ public class UIController : MonoBehaviour
     {
         ManageThePickupTip();
         scoreUI.text = scoreUIText + scoreManager.GetScore();
-        levelUI.text = levelUIText + levelController.GetLevel();
+        //levelUI.text = levelUIText + levelController.GetLevel();
     }
 
     public void FillScale(float dividend, float divider)

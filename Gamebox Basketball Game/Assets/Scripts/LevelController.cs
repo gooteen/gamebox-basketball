@@ -12,8 +12,10 @@ public class LevelController : MonoBehaviour
 
     [SerializeField] private GameObject ringGuard;
     [SerializeField] private GameObject Video;
+    [SerializeField] private UnityEngine.Video.VideoPlayer player;
     [SerializeField] private GameObject opponent;
     [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private GameObject enemyPoint;
 
     [SerializeField] private float newOpponentSpeed;
 
@@ -124,8 +126,10 @@ public class LevelController : MonoBehaviour
         spawnPoint.SetActive(false);
         ringGuard.SetActive(false);
         opponent.SetActive(false);
+        enemyPoint.SetActive(false);
         audio.Stop();
         Video.SetActive(true);
+        player.Play();
         Debug.Log("Game beaten!");
         MoveGround();
     }
