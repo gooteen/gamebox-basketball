@@ -4553,6 +4553,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7758648326692911456, guid: b07cec3a75e949346ab28f7aa7ce0591,
+        type: 3}
+      propertyPath: m_TagString
+      value: Opponent
+      objectReference: {fileID: 0}
     - target: {fileID: 7758648326692911467, guid: b07cec3a75e949346ab28f7aa7ce0591,
         type: 3}
       propertyPath: ball

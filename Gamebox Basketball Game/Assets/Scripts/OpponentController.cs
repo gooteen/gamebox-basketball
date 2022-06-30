@@ -96,6 +96,8 @@ public class OpponentController : MonoBehaviour
         {
             Debug.Log("s");
             ThrowAway();
+            BallSoundController ballSound = ball.GetComponent<BallSoundController>();
+            ballSound.CallSound();
         }
     }
 

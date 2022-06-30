@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Counter
   - Ball
+  - Opponent
   layers:
   - Default
   - TransparentFX

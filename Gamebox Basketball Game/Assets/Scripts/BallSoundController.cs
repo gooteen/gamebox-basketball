@@ -19,10 +19,14 @@ public class BallSoundController : MonoBehaviour
     {
         SetRandomClip();
         SetVolume();
-        if (col.gameObject.tag != "Player")
-        {
-            source.Play();
-        }
+        source.Play();
+    }
+
+    public void CallSound()
+    {
+        SetRandomClip();
+        source.volume = 1;
+        source.Play();
     }
 
     void SetRandomClip()
