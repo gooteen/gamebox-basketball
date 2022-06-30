@@ -7,6 +7,7 @@ public class RespawnerController : MonoBehaviour
     [SerializeField] private LevelController levelController;
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private string ballTag = "Ball";
+    [SerializeField] AudioSource audio;
 
    void OnTriggerEnter(Collider col)
     {
@@ -15,6 +16,7 @@ public class RespawnerController : MonoBehaviour
             levelController.RespawnPlayer();
         } else if (col.gameObject.tag == ballTag)
         {
+            audio.Play();
             levelController.RespawnBall();
         }
     }
