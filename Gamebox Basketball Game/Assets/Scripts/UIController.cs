@@ -48,9 +48,11 @@ public class UIController : MonoBehaviour
             if (i < level - 1)
             {
                 bulbs[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+                bulbs[i].GetComponent<Renderer>().material.SetColor("_Color", Color.white);
             } else 
             {
-                bulbs[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.grey);
+                bulbs[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0.196f, 0.196f, 0.196f, 0.196f));
+                bulbs[i].GetComponent<Renderer>().material.SetColor("_Color", new Color(0,0,0,0));
             }
         }
     }

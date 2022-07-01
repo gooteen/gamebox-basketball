@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5258587255730940958}
   m_Layer: 13
   m_Name: Opponent
-  m_TagString: Untagged
+  m_TagString: Opponent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7758648326692911456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.55, y: -2.32, z: 10.25}
-  m_LocalScale: {x: 2.347805, y: 2.0364318, z: 2.4112}
+  m_LocalScale: {x: 2.347805, y: 2.2879539, z: 2.4112}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -91,7 +91,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7758648326692911456}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -115,13 +115,14 @@ MonoBehaviour:
   ui: {fileID: 0}
   playerTag: Player
   ballTag: Ball
-  throwPoint: {fileID: 0}
   throwForce: 45
-  speed: 5
+  speed: 3
   followDistance: 20
   mask:
     serializedVersion: 2
     m_Bits: 256
+  blinkRate: 0.2
+  lastBlinkTime: 0
 --- !u!54 &7758648326692911466
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,16 +150,16 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 935bfc7635ac51345aa1a546bdd46762, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.6
-  m_Pitch: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1.92
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 4
+  MinDistance: 2
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
