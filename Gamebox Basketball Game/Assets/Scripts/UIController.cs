@@ -7,7 +7,7 @@ public class UIController : MonoBehaviour
 {
 
     [SerializeField] GameObject[] bulbs;
-    [SerializeField] private Text pickupTip;
+    [SerializeField] private GameObject pickupPrompt;
     [SerializeField] private Image scale;
 
     [SerializeField] private Animator anim;
@@ -33,6 +33,7 @@ public class UIController : MonoBehaviour
     public void FillScale(float dividend, float divider)
     {
         scale.fillAmount = dividend / divider;
+        
     }
 
     public void PlayAnimation()
@@ -61,11 +62,11 @@ public class UIController : MonoBehaviour
     {
         if (playerView.CheckIfPickable())
         {
-            pickupTip.enabled = true;
+            pickupPrompt.SetActive(true);
         }
         else
         {
-            pickupTip.enabled = false;
+            pickupPrompt.SetActive(false);
         }
     }
 }

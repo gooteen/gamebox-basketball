@@ -9,17 +9,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip catchSound;
     [SerializeField] private AudioClip chargeSound;
     [SerializeField] private AudioClip gruntSound;
-    [SerializeField] private AudioClip scoreSound;
 
     [SerializeField] private float chargeSoundVolume;
     [SerializeField] private float catchSoundVolume;
     [SerializeField] private float gruntSoundVolume;
-    [SerializeField] private float scoreSoundVolume;
 
     [SerializeField] private float catchSoundPitch = 1f;
     [SerializeField] private float chargeSoundPitch = 3f;
     [SerializeField] private float gruntSoundPitch = 3f;
-    [SerializeField] private float scoreSoundPitch = 3f;
 
     [SerializeField] LayerMask groundCheckMask;
     [SerializeField] LayerMask springCheckMask;
@@ -36,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform gripPoint;
     [SerializeField] private CameraController playerView;
     [SerializeField] private UIController ui;
+    [SerializeField] private RingBehaviour ring;
 
     [SerializeField] private float springJumpHeight;
     [SerializeField] private float impulseStepValue = 5f;
@@ -150,11 +148,9 @@ public class PlayerController : MonoBehaviour
 
     public void PlayScoreSound()
     {
-        source.clip = scoreSound;
-        source.volume = scoreSoundVolume;
-        source.pitch = scoreSoundPitch;
-        source.Play();
+        ring.PlayAddPointSound();
     }
+
     public void Grunt()
     {
         source.clip = gruntSound;
@@ -186,6 +182,11 @@ public class PlayerController : MonoBehaviour
         soundPlayed = false;
     }
 
+    public bool GetPicked()
+    {
+        return ballPicked;
+    }
+
     void PickUp()
     {
         if (playerView.CheckIfPickable())
@@ -196,6 +197,7 @@ public class PlayerController : MonoBehaviour
             ball.transform.SetParent(gripPoint.transform);
             ballPicked = true;
             scoreManager.UnlockScoring();
+            scoreManager.ResetTrigger();
             source.clip = catchSound;
             source.volume = catchSoundVolume;
             source.pitch = catchSoundPitch;

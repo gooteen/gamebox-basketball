@@ -16,9 +16,11 @@ public class RingBehaviour : MonoBehaviour
     [SerializeField] private bool isHorizontal;
     [SerializeField] private bool toTheRight;
     [SerializeField] private bool atTheBottom;
-  
+    private AudioSource audio;
+
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         atTheBottom = true;
         toTheRight = false;
         move = false;
@@ -36,8 +38,7 @@ public class RingBehaviour : MonoBehaviour
             {
                 MoveVertically();
             }
-        }
-        
+        }  
     }
 
     public void SetDirection()
@@ -48,6 +49,11 @@ public class RingBehaviour : MonoBehaviour
     public void SetMove()
     {
         move = !move;
+    }
+
+    public void PlayAddPointSound()
+    {
+        audio.Play();
     }
 
     void MoveHorizontally()
