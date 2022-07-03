@@ -6702,7 +6702,7 @@ PrefabInstance:
     - target: {fileID: 1881069755041247236, guid: e5b5ac7d36d77174ab3502cf35fb525d,
         type: 3}
       propertyPath: velocityCheckValue
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1881069755041247236, guid: e5b5ac7d36d77174ab3502cf35fb525d,
         type: 3}

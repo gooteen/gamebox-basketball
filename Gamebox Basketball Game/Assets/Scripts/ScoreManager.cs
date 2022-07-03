@@ -51,10 +51,11 @@ public class ScoreManager : MonoBehaviour
                 }
             } else
             {
+                Debug.Log("canScore is false");
                 canScore = false;
             }
             
-        } else if(col.gameObject.tag == counterTag2 && (!controller.GetPicked()))
+        } else if (col.gameObject.tag == counterTag2 && (!controller.GetPicked()))
         {
             Debug.Log("second collider");
             if (hitFirstCollider)
@@ -62,9 +63,6 @@ public class ScoreManager : MonoBehaviour
                 AddPoint();
                 hitFirstCollider = false;
             }
-        }
-        {
-
         }
     }
 
